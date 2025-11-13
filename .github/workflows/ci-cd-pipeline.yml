@@ -1,0 +1,47 @@
+name: Déploiement CI/CD Complet
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ci_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Exécuter le Test (Vérification de la variable)
+        run: |
+          echo "--- Début du Test CI ---"
+          if grep -q "const VERSION_PROJET = \"1.0.0\";" app.js; then
+            echo "✅ Succès : La variable de version est présente. Test validé."
+          else
+            echo "❌ Échec : La variable de version est manquante. Arrêt du pipeline."
+            exit 1
+          fi
+
+  cd_deploy:
+    needs: ci_test
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code (pour l'artifact)
+        uses: actions/checkout@v4
+
+      - name: Upload des fichiers pour GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Déploiement sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
