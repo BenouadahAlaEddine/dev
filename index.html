@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rabah Cuisine – Meubles et cuisines sur mesure</title>
+  <meta name="description" content="Artisan spécialiste en fabrication et installation de meubles sur mesure: cuisines équipées, chambres, meubles d'entrée, aménagements de magasin et armoires personnalisées." />
+  <meta name="theme-color" content="#f6f5f3" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f5f3;
+      --surface: #ffffff;
+      --text: #1e1e1e;
+      --muted: #6a6a6a;
+      --line: #e7e4df;
+      --wood: #a16a3a;
+      --wood-600: #8a5932;
+      --wood-700: #734a28;
+      --accent: #c0a280;
+      --success: #2f9e44;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+      --shadow-xl: 0 20px 50px rgba(0,0,0,0.12);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    /* Header amélioré avec glassmorphism */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(161, 106, 58, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    header.scrolled {
+      background: rgba(161, 106, 58, 0.98);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url('rb.jpg');
+      background-repeat: no-repeat;
+      background-position: right 6% center;
+      background-size: 180px auto;
+      opacity: .08;
+      z-index: 0;
+    }
+    
+    .nav {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-decoration: none;
+    }
+    
+    .brand-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      background: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .brand-logo:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    }
+    
+    .brand span {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #fff;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      position: relative;
+      transition: transform .2s ease, background-color .2s ease;
+    }
+    
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    
+    nav a:hover::before {
+      width: 60%;
+      left: 20%;
+    }
+    
+    nav a:hover { 
+      background: rgba(255,255,255,0.15); 
+      transform: translateY(-2px); 
+    }
+
+    .hamburger { display: none; }
+    .mobile-menu { display: none; }
+
+    /* Hero Section avec parallax */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(1400px 350px at 70% -10%, rgba(161,106,58,0.12), transparent 65%),
+        radial-gradient(900px 280px at 10% -20%, rgba(192,162,128,0.18), transparent 65%);
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--wood), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--text), var(--wood-600));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero p.lead {
+      margin: 0 0 32px;
+      color: var(--muted);
+      font-size: clamp(16px, 2.2vw, 19px);
+      line-height: 1.7;
+    }
+    
+    .cta-row { 
+      display: flex; 
+      gap: 16px; 
+      flex-wrap: wrap; 
+    }
+    
+    .btn {
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center;
+      gap: 10px;
+      border: none; 
+      cursor: pointer;
+      border-radius: 12px; 
+      padding: 14px 24px;
+      font-weight: 700; 
+      letter-spacing: .3px;
+      font-size: 15px;
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn-primary { 
+      background: linear-gradient(135deg, var(--wood), var(--wood-700)); 
+      color: #fff; 
+      box-shadow: 0 12px 28px rgba(161,106,58,0.4);
+    }
+    
+    .btn-primary:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 20px 40px rgba(161,106,58,0.5);
+    }
+    
+    .btn-ghost { 
+      background: transparent; 
+      color: var(--text); 
+      border: 2px solid var(--line);
+    }
+    
+    .btn-ghost:hover { 
+      background: var(--surface); 
+      box-shadow: var(--shadow);
+      border-color: var(--wood);
+    }
+
+    .hero-visual {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(161,106,58,0.3), var(--shadow-xl);
+      background: #eae6df;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(161,106,58,0.2), transparent);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .hero-visual:hover::before {
+      opacity: 1;
+    }
+    
+    .hero-visual img {
+      width: 100%; 
+      height: auto; 
+      display: block;
+      transform: scale(1.03);
+      transition: transform 1.5s cubic-bezier(.2,.8,.2,1);
+    }
+    
+    .hero-visual:hover img { 
+      transform: scale(1.08); 
+    }
+    
+    .badge-stack {
+      position: absolute; 
+      left: 20px; 
+      bottom: 20px;
+      display: flex; 
+      gap: 12px; 
+      flex-wrap: wrap;
+      z-index: 2;
+    }
+    
+    .chip {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(161,106,58,0.2);
+      padding: 10px 16px; 
+      border-radius: 999px;
+      font-size: 13px; 
+      font-weight: 700; 
+      color: var(--wood-700);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    /* Stats Section - NOUVELLE */
+    .stats {
+      padding: 60px 0;
+      background: linear-gradient(135deg, var(--wood), var(--wood-600));
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    
+    .stat-item {
+      text-align: center;
+      color: #fff;
+    }
+    
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Section base */
+    section { 
+      padding: 80px 0; 
+    }
+    
+    .section-head { 
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    
+    .eyebrow { 
+      color: var(--wood-600); 
+      font-weight: 800; 
+      letter-spacing: .2em; 
+      text-transform: uppercase; 
+      font-size: 13px;
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(161,106,58,0.1);
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    
+    h2 { 
+      font-family: 'Playfair Display', serif; 
+      font-size: clamp(32px, 4vw, 48px); 
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    
+    .section-intro { 
+      color: var(--muted); 
+      max-width: 70ch;
+      margin: 0 auto;
+      font-size: 17px;
+    }
+
+    /* Services avec hover effects améliorés */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+    }
+    
+    .service-card {
+      grid-column: span 2;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: grid; 
+      grid-template-columns: 56px 1fr; 
+      gap: 16px; 
+      align-items: flex-start;
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--wood), var(--accent));
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    
+    .service-card:hover::before {
+      transform: translateX(0);
+    }
+    
+    .service-card:hover { 
+      transform: translateY(-6px); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
+      border-color: var(--wood);
+    }
+    
+    .svc-icon {
+      width: 56px; 
+      height: 56px; 
+      border-radius: 14px; 
+      display: grid; 
+      place-items: center;
+      background: linear-gradient(135deg, rgba(161,106,58,0.1), rgba(192,162,128,0.15));
+      border: 1px solid var(--line);
+      color: var(--wood-600);
+      box-shadow: inset 0 2px 4px rgba(255,255,255,.8);
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .svc-icon {
+      transform: rotate(5deg) scale(1.1);
+      background: linear-gradient(135deg, var(--wood), var(--wood-600));
+      color: #fff;
+    }
+    
+    .service-card h3 { 
+      margin: 4px 0 8px; 
+      font-size: 19px;
+      transition: color 0.3s ease;
+    }
+    
+    .service-card:hover h3 {
+      color: var(--wood-600);
+    }
+    
+    .service-card p { 
+      margin: 0; 
+      color: var(--muted); 
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Gallery avec effets améliorés */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    
+    .shot {
+      position: relative; 
+      overflow: hidden; 
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #e9e5de;
+      box-shadow: var(--shadow);
+      aspect-ratio: 3 / 2;
+      transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    
+    .shot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(161,106,58,0.4), rgba(138,89,50,0.6));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+    
+    .shot:hover::after {
+      opacity: 1;
+    }
+    
+    .shot::before {
+      content: '🔍';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 48px;
+      z-index: 2;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .shot:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .shot:hover { 
+      transform: translateY(-4px) scale(1.02); 
+      box-shadow: 0 24px 48px rgba(0,0,0,0.18);
+      border-color: var(--wood);
+    }
+    
+    .shot img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain; 
+      display: block; 
+      transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
+      background: #f8f6f2;
+    }
+    
+    .shot:hover img { 
+      transform: scale(1.12); 
+    }
+    
+    .shot.small { grid-column: span 6; }
+    .shot.medium { grid-column: span 6; }
+    .shot.large { grid-column: span 12; }
+    
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .lightbox.open { display: flex; }
+    
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .lightbox img, .lightbox video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: rgba(255,255,255,0.95);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      color: var(--text);
+    }
+    
+    .lightbox-close:hover {
+      background: #fff;
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    /* Testimonials - NOUVELLE SECTION */
+    .testimonials {
+      background: linear-gradient(180deg, rgba(192,162,128,0.06), transparent);
+      border-top: 1px solid var(--line);
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 80px;
+      font-family: 'Playfair Display', serif;
+      color: rgba(161,106,58,0.1);
+      line-height: 1;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--wood);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      line-height: 1.7;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--wood), var(--wood-600));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    
+    .author-info strong {
+      display: block;
+      font-weight: 700;
+      color: var(--text);
+    }
+    
+    .author-info span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    
+    .stars {
+      color: #ffd700;
+      margin-top: 16px;
+      font-size: 16px;
+    }
+
+    /* About */
+    .about {
+      background: 
+        linear-gradient(135deg, rgba(161,106,58,0.03), transparent 60%),
+        linear-gradient(180deg, rgba(192,162,128,0.08), transparent 60%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    
+    .about-grid { 
+      display: grid; 
+      grid-template-columns: 1.1fr 0.9fr; 
+      gap: 48px; 
+      align-items: center; 
+    }
+    
+    .pill-row { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 12px;
+      margin-top: 24px;
+    }
+    
+    .pill { 
+      background: #fff; 
+      color: var(--text); 
+      border: 1px solid var(--line); 
+      padding: 10px 18px; 
+      border-radius: 999px; 
+      font-weight: 700; 
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .pill:hover {
+      background: var(--wood);
+      color: #fff;
+      border-color: var(--wood);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(161,106,58,0.3);
+    }
+
+    /* Contact amélioré */
+    .contact-grid { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 24px; 
+    }
+    
+    form {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    
+    form:hover {
+      box-shadow: var(--shadow-xl);
+    }
+    
+    .field { 
+      display: grid; 
+      gap: 10px; 
+      margin-bottom: 20px; 
+    }
+    
+    label { 
+      font-weight: 700; 
+      font-size: 14px;
+      color: var(--text);
+    }
+    
+    input, textarea {
+      border: 2px solid var(--line);
+      background: #fbfbfa;
+      border-radius: 12px; 
+      padding: 14px 16px; 
+      font: inherit; 
+      color: var(--text);
+      transition: all .3s ease;
+    }
+    
+    textarea { 
+      min-height: 140px; 
+      resize: vertical; 
+    }
+    
+    input:focus, textarea:focus { 
+      outline: none; 
+      border-color: var(--wood); 
+      box-shadow: 0 0 0 4px rgba(161,106,58,0.12); 
+      background: #fff;
+      transform: translateY(-2px);
+    }
+    
+    .form-foot { 
+      display: flex; 
+      align-items: center; 
+      gap: 14px; 
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+    
+    .hint { 
+      color: var(--muted); 
+      font-size: 13px; 
+    }
+
+    .card-info {
+      background: #fff; 
+      border: 1px solid var(--line); 
+      border-radius: 16px; 
+      padding: 28px; 
+      box-shadow: var(--shadow);
+      display: grid; 
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .card-info:hover {
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-2px);
+    }
+    
+    .info-row { 
+      display: grid; 
+      grid-template-columns: 40px 1fr; 
+      gap: 14px; 
+      align-items: center; 
+    }
+    
+    .info-icon { 
+      width: 40px; 
+      height: 40px; 
+      border-radius: 10px; 
+      display: grid; 
+      place-items: center; 
+      background: linear-gradient(135deg, rgba(161,106,58,0.1), rgba(192,162,128,0.15)); 
+      color: var(--wood-600); 
+      border: 1px solid var(--line);
+      transition: all 0.3s ease;
+    }
+    
+    .info-row:hover .info-icon {
+      background: linear-gradient(135deg, var(--wood), var(--wood-600));
+      color: #fff;
+      transform: rotate(5deg);
+    }
+    
+    .socials { 
+      display: grid; 
+      gap: 12px; 
+    }
+    
+    .social-link { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 12px; 
+      padding: 12px 16px; 
+      border: 1px solid var(--line); 
+      border-radius: 12px; 
+      text-decoration: none; 
+      color: var(--text); 
+      background: #fff; 
+      transition: all .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(161,106,58,0.1), rgba(192,162,128,0.1));
+      transition: width 0.4s ease;
+    }
+    
+    .social-link:hover::before {
+      width: 100%;
+    }
+    
+    .social-link:hover { 
+      transform: translateY(-3px); 
+      box-shadow: var(--shadow); 
+      border-color: var(--wood);
+    }
+    
+    .social-icon { 
+      width: 32px; 
+      height: 32px; 
+      display: grid; 
+      place-items: center; 
+      border-radius: 10px; 
+      background: linear-gradient(135deg, rgba(161,106,58,0.1), rgba(192,162,128,0.15)); 
+      color: var(--wood-600); 
+      border: 1px solid var(--line);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .social-link:hover .social-icon {
+      background: linear-gradient(135deg, var(--wood), var(--wood-600));
+      color: #fff;
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .map-embed { 
+      position: relative; 
+      border: 1px solid var(--line); 
+      border-radius: 16px; 
+      overflow: hidden; 
+      background: #e9e5de; 
+      aspect-ratio: 16 / 10;
+      box-shadow: var(--shadow);
+    }
+    
+    .map-embed iframe { 
+      position: absolute; 
+      inset: 0; 
+      width: 100%; 
+      height: 100%; 
+      border: 0; 
+    }
+
+    /* Footer */
+    footer { 
+      padding: 40px 0; 
+      border-top: 1px solid var(--line); 
+      background: linear-gradient(180deg, transparent, rgba(161,106,58,0.03));
+    }
+    
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-content div {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    .footer-content a {
+      color: var(--wood-600);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-content a:hover {
+      color: var(--wood);
+    }
+
+    /* Reveal animations */
+    .reveal { 
+      opacity: 0; 
+      transform: translateY(30px); 
+      transition: opacity .8s cubic-bezier(0.4, 0, 0.2, 1), transform .8s cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    
+    .reveal.is-visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+    
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--wood), var(--accent));
+      z-index: 100;
+      transition: width 0.1s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-card { grid-column: auto; }
+      .gallery-grid { grid-template-columns: repeat(6, 1fr); }
+      .shot.small { grid-column: span 3; }
+      .shot.medium { grid-column: span 6; }
+      .shot.large { grid-column: span 6; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+      .shot.small { grid-column: span 4; }
+      .shot.medium { grid-column: span 4; }
+      .shot.large { grid-column: span 4; }
+      .stats-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+    }
+    
+    @media (max-width: 720px) {
+      .brand { gap: 8px; }
+      .brand-logo { width: 56px; height: 56px; border-radius: 12px; }
+      .brand span { font-size: 22px; }
+      nav ul { display: none; }
+      .hamburger { 
+        display: inline-flex; 
+        align-items: center; 
+        justify-content: center; 
+        width: 44px; 
+        height: 44px; 
+        border-radius: 12px; 
+        border: 1px solid rgba(255,255,255,0.3); 
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+        transition: all 0.3s ease;
+      }
+      .hamburger:hover {
+        background: rgba(255,255,255,0.2);
+        transform: scale(1.05);
+      }
+      .mobile-menu { 
+        position: fixed; 
+        inset: 88px 14px auto 14px; 
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--line); 
+        border-radius: 16px; 
+        box-shadow: var(--shadow-xl); 
+        padding: 16px; 
+        display: none;
+        animation: fadeInUp 0.3s ease;
+      }
+      .mobile-menu.open { display: block; }
+      .mobile-menu a { 
+        display: block; 
+        padding: 14px 12px; 
+        border-radius: 10px; 
+        font-weight: 700; 
+        color: var(--text); 
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+      }
+      .mobile-menu a:hover { 
+        background: var(--bg);
+        border-color: var(--wood);
+        transform: translateX(4px);
+      }
+      header::before { display: none; }
+      .hero { padding: 70px 0 50px; }
+      .stats { padding: 40px 0; }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      * { 
+        transition: none !important; 
+        animation: none !important; 
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Progress bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header id="header">
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="Rabah Cuisine, retour à l'accueil">
+        <img src="rb.jpg" alt="Logo Rabah Cuisine" class="brand-logo" width="80" height="80" />
+        <span>Rabah Cuisine</span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#galerie">Réalisations</a></li>
+          <li><a href="#temoignages">Témoignages</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="menu-mobile" class="mobile-menu container" role="dialog" aria-modal="true" aria-label="Menu mobile">
+      <a href="#services">Services</a>
+      <a href="#galerie">Réalisations</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow reveal">Artisanat d'exception</p>
+          <h1 class="reveal" style="transition-delay:.05s">Meubles et cuisines sur mesure, conçus pour durer</h1>
+          <p class="lead reveal" style="transition-delay:.1s">Nous imaginons, fabriquons et installons des cuisines équipées, chambres, meubles d'entrée, aménagements de magasin et armoires personnalisées. Matériaux nobles, finitions soignées et pose experte.</p>
+          <div class="cta-row reveal" style="transition-delay:.15s">
+            <a href="#contact" class="btn btn-primary">
+              <span>Demander un devis</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#galerie" class="btn btn-ghost">Voir nos réalisations</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal" style="transition-delay:.2s">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop" alt="Cuisine sur mesure en bois naturel avec éclairage chaleureux" loading="eager" />
+          <div class="badge-stack" aria-hidden="true">
+            <div class="chip">Bois naturel</div>
+            <div class="chip">Finitions premium</div>
+            <div class="chip">Pose soignée</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Stats -->
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal">
+            <span class="stat-number" data-target="15">0</span>
+            <span class="stat-label">Ans d'expérience</span>
+          </div>
+          <div class="stat-item reveal" style="transition-delay:.1s">
+            <span class="stat-number" data-target="500">0</span>
+            <span class="stat-label">Projets réalisés</span>
+          </div>
+          <div class="stat-item reveal" style="transition-delay:.2s">
+            <span class="stat-number" data-target="98">0</span>
+            <span class="stat-label">% Satisfaction</span>
+          </div>
+          <div class="stat-item reveal" style="transition-delay:.3s">
+            <span class="stat-number" data-target="24">0</span>
+            <span class="stat-label">Mois garantie</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow reveal">Savoir‑faire</p>
+          <h2 class="reveal" style="transition-delay:.05s">Des services clairs, un accompagnement complet</h2>
+          <p class="section-intro reveal" style="transition-delay:.1s">Du premier croquis à la pose finale, nous créons des espaces fonctionnels et chaleureux qui s'intègrent parfaitement à votre intérieur comme à vos espaces professionnels.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="svc-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 8h8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>Cuisines équipées</h3>
+              <p>Conception optimisée, rangements intelligents, plans durables et finitions impeccables.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal" style="transition-delay:.05s">
+            <div class="svc-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18M5 12V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4" stroke="currentColor" stroke-width="2"/><path d="M3 18v-6m18 6v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>Chambres</h3>
+              <p>Placards intégrés, têtes de lit sur mesure et solutions de rangement élégantes.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal" style="transition-delay:.1s">
+            <div class="svc-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="5" width="8" height="14" rx="1.5" stroke="currentColor" stroke-width="2"/><path d="M16 8h4M16 12h4M16 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>Meubles d'entrée</h3>
+              <p>Bancs, patères, placards et dressings compacts pour des entrées ordonnées.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal" style="transition-delay:.15s">
+            <div class="svc-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10h16l-1.2 8.4A2 2 0 0 1 16.8 20H7.2a2 2 0 0 1-1.99-1.6L4 10Z" stroke="currentColor" stroke-width="2"/><path d="M6 10V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <div>
+              <h3>Aménagements de magasin</h3>
+              <p>Comptoirs, étagères et vitrines pensées pour sublimer vos produits.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal" style="transition-delay:.2s">
+            <div class="svc-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="4" width="14" height="16" rx="1.5" stroke="currentColor" stroke-width="2"/><path d="M12 4v16" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <h3>Armoires personnalisées</h3>
+              <p>Solutions sur mesure, portes coulissantes et intérieurs soigneusement agencés.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal" style="transition-delay:.25s">
+            <div class="svc-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 16l5-10 5 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3>Fabrication & pose</h3>
+              <p>Atelier équipé et installation maîtrisée pour un résultat durable.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galerie">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow reveal">Réalisations</p>
+          <h2 class="reveal" style="transition-delay:.05s">Une sélection de projets sur mesure</h2>
+          <p class="section-intro reveal" style="transition-delay:.1s">Chaque pièce est pensée pour s'adapter à votre espace et à vos usages, avec un souci du détail qui fait la différence.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="shot medium reveal">
+            <img src="armoire1.jpg" alt="Armoire sur mesure - modèle 1" loading="lazy" />
+          </figure>
+          <figure class="shot medium reveal" style="transition-delay:.1s">
+            <img src="armoire2.jpg" alt="Armoire sur mesure - modèle 2" loading="lazy" />
+          </figure>
+          <figure class="shot medium reveal" style="transition-delay:.2s">
+            <img src="armoire3.jpg" alt="Armoire sur mesure - modèle 3" loading="lazy" />
+          </figure>
+          <figure class="shot medium reveal" style="transition-delay:.3s">
+            <img src="element.jpg" alt="Élément de menuiserie personnalisé" loading="lazy" />
+          </figure>
+          <figure class="shot large reveal" style="transition-delay:.4s">
+            <video controls preload="metadata" poster="video.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+              <source src="video.mp4" type="video/mp4" />
+              <p>Votre navigateur ne supporte pas la lecture vidéo.</p>
+            </video>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section id="temoignages" class="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow reveal">Témoignages</p>
+          <h2 class="reveal" style="transition-delay:.05s">Ce que disent nos clients</h2>
+          <p class="section-intro reveal" style="transition-delay:.1s">La satisfaction de nos clients est notre plus belle récompense.</p>
+        </div>
+        
+        <div class="testimonials-grid">
+          <article class="testimonial-card reveal">
+            <p class="testimonial-text">"Travail exceptionnel ! Notre cuisine sur mesure dépasse toutes nos attentes. L'équipe est professionnelle, à l'écoute et très minutieuse. Je recommande vivement !"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SM</div>
+              <div class="author-info">
+                <strong>Sarah Meddour</strong>
+                <span>Propriétaire, Relizane</span>
+              </div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </article>
+          
+          <article class="testimonial-card reveal" style="transition-delay:.1s">
+            <p class="testimonial-text">"Des artisans passionnés qui respectent les délais et le budget. Notre dressing est magnifique et parfaitement fonctionnel. Merci pour votre savoir-faire !"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">KA</div>
+              <div class="author-info">
+                <strong>Karim Amrani</strong>
+                <span>Client particulier</span>
+              </div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </article>
+          
+          <article class="testimonial-card reveal" style="transition-delay:.2s">
+            <p class="testimonial-text">"Nous avons fait appel à Rabah Cuisine pour l'aménagement de notre boutique. Résultat impeccable, finitions soignées. Un vrai plaisir de travailler avec eux !"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">LB</div>
+              <div class="author-info">
+                <strong>Lamia Benali</strong>
+                <span>Commerçante</span>
+              </div>
+            </div>
+            <div class="stars">★★★★★</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos" class="about">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow reveal">À propos</p>
+          <h2 class="reveal" style="transition-delay:.05s">Un atelier à taille humaine, une exigence artisanale</h2>
+          <p class="section-intro reveal" style="transition-delay:.1s">Depuis plus de 10 ans, nous concevons des meubles sur mesure en combinant techniques traditionnelles et outillage moderne. Notre approche: écoute, précision et finitions durables.</p>
+          <div class="pill-row reveal" style="transition-delay:.15s">
+            <span class="pill">Conseil personnalisé</span>
+            <span class="pill">Matériaux nobles</span>
+            <span class="pill">Garantie et SAV</span>
+            <span class="pill">Délais maîtrisés</span>
+          </div>
+        </div>
+        <div class="hero-visual reveal" style="transition-delay:.2s">
+          <img src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=1400&auto=format&fit=crop" alt="Atelier de menuiserie avec outils et bois" loading="lazy" />
+          <div class="badge-stack" aria-hidden="true">
+            <div class="chip">Sur‑mesure</div>
+            <div class="chip">Fabrication locale</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow reveal">Contact</p>
+          <h2 class="reveal" style="transition-delay:.05s">Parlons de votre projet</h2>
+          <p class="section-intro reveal" style="transition-delay:.1s">Nous sommes à votre écoute pour donner vie à vos idées</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card-info reveal">
+            <div class="info-row">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 5.2 2 2 0 0 1 4.11 3h2a2 2 0 0 1 2 1.72c.12.9.3 1.77.54 2.61a2 2 0 0 1-.45 2.11L7.1 10.9a16 16 0 0 0 6 6l1.45-1.1a2 2 0 0 1 2.11-.45c.84.24 1.71.42 2.61.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <div>
+                <strong>Téléphone</strong>
+                <div><a href="tel:+213553322011">0553 32 20 11</a></div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <div>
+                <strong>Email</strong>
+                <div><a href="mailto:contact@rabahcuisine.com">contact@rabahcuisine.com</a></div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <div>
+                <strong>Adresse</strong>
+                <div>Rue Slimanie Abed, Oued Rhiou - Relizane</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-info reveal" style="transition-delay:.1s">
+            <strong>Réseaux sociaux</strong>
+            <div class="socials">
+              <a class="social-link" href="https://www.tiktok.com/@rabah.cuisine?_t=ZN-90IUtyZhhDi&_r=1" target="_blank" rel="noopener">
+                <span class="social-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 3a6.5 6.5 0 0 0 6.5 6.5v2A8.5 8.5 0 0 1 15 9.9V15a6 6 0 1 1-6-6c.34 0 .67.03 1 .08V11a3.5 3.5 0 1 0 3.5 3.5V3h2Z"/></svg>
+                </span>
+                <span>Tiktok @rabah.cuisine</span>
+              </a>
+              <a class="social-link" href="#" target="_blank" rel="noopener">
+                <span class="social-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                </span>
+                <span>@rabah_cuisine</span>
+              </a>
+              <a class="social-link" href="https://www.facebook.com/profile.php?id=61568780285756" target="_blank" rel="noopener">
+                <span class="social-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13 10h3V7h-3V6a2 2 0 0 1 2-2h1V1h-2a5 5 0 0 0-5 5v1H8v3h1v10h4V10Z"/></svg>
+                </span>
+                <span>Facebook</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="card-info reveal" style="transition-delay:.2s">
+            <strong>Localisation</strong>
+            <div class="map-embed">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.999887324748!2d2.292292615674178!3d48.8583730792871!2m3!1f0!2f0!
