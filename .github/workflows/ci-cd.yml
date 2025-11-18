@@ -72,11 +72,7 @@ jobs:
         
       - name: Exécuter le déploiement de Production (Shell Script + Secret)
         run: |
-          # 1. Copie des fichiers de build vers la structure attendue par le script deploy.sh
-          # Ceci est nécessaire car le script deploy.sh attend que 'dist/' existe.
-          mkdir -p dist
-          cp -r dist-final/* dist/
+          mv dist-final dist
           
-          # 2. Appel du script Shell avec le secret GitHub
+          # Appel du script Shell avec le secret GitHub
           ./scripts/deploy.sh production ${{ secrets.API_KEY_PROD }}
-        # ${{ secrets.API_KEY_PROD }} est injecté de manière sécurisée par GitHub
