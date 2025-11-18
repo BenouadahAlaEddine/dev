@@ -1,5 +1,6 @@
-name: CI/CD Pipeline Statique
+name: CI/CD Pipeline avec Environnements et Secrets
 
+# Déclenchement du workflow lors d'un push sur la branche main
 on:
   push:
     branches:
@@ -7,28 +8,75 @@ on:
   # Permet un déclenchement manuel depuis l'interface GitHub
   workflow_dispatch:
 
+# ===============================================
+# JOB 1 : BUILD ET TEST (CI - Intégration Continue)
+# ===============================================
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest  # Environnement Linux (similaire à WSL)
+  build:
+    runs-on: ubuntu-latest  # Utilise un runner Linux (similaire à WSL)
     
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
         
-      - name: Rendre les scripts exécutables (Aspect Sécurité Linux)
+      # Les scripts nécessitent d'avoir les permissions d'exécution
+      - name: Rendre les scripts exécutables (Permissions Linux)
+        # Nécessite que vous ayez bien un dossier 'scripts' avec les deux fichiers .sh
         run: chmod +x scripts/*.sh
 
+      # Exécution des commandes de build (définies dans votre script Shell)
       - name: Exécuter la phase de Build (Script Shell)
         run: ./scripts/build.sh
 
+      # Exécution des tests de base
       - name: Exécuter les tests (Script Shell)
         run: ./scripts/test.sh
         
-      # Simule le déploiement en uploadant les fichiers de build
-      - name: Déploiement (Simulé)
-        # Ici, on simule un upload des artefacts pour la "production"
+      # Upload de l'artefact : le résultat du build pour être réutilisé (CD)
+      - name: Préparer les artefacts pour le déploiement
         uses: actions/upload-artifact@v4
         with:
           name: site-statique
           path: dist/
           retention-days: 1
+
+# ===============================================
+# JOB 2 : DÉPLOIEMENT (CD - Déploiement Continu)
+# ===============================================
+  deploy-prod:
+    # IMPORTANT : Ce job n'est lancé que si le job 'build' a réussi.
+    needs: build 
+    runs-on: ubuntu-latest
+    
+    environment: production # Optionnel mais bonne pratique pour l'affichage GitHub
+    
+    steps:
+      # Télécharge les fichiers qui ont été uploadés par le job 'build'
+      - name: Télécharger les artefacts du Build
+        uses: actions/download-artifact@v4
+        with:
+          # Le nom doit correspondre à celui utilisé dans le job 'build'
+          name: site-statique
+          path: dist-final # Les fichiers de build seront placés dans ce dossier
+          
+      # Le job de déploiement doit aussi avoir accès au script deploy.sh
+      - name: Checkout du script de déploiement
+        uses: actions/checkout@v4
+        # Limite le checkout au dossier scripts pour la rapidité
+        with:
+          sparse-checkout: |
+            scripts/
+      
+      - name: Rendre le script de déploiement exécutable
+        run: chmod +x scripts/deploy.sh
+        
+      - name: Exécuter le déploiement de Production (Shell Script + Secret)
+        run: |
+          # 1. Copie des fichiers de build vers la structure attendue par le script deploy.sh
+          # Ceci est nécessaire car le script deploy.sh attend que 'dist/' existe.
+          mkdir -p dist
+          cp -r dist-final/* dist/
+          
+          # 2. Appel du script Shell avec le secret GitHub
+          ./scripts/deploy.sh production ${{ secrets.API_KEY_PROD }}
+        # ${{ secrets.API_KEY_PROD }} est injecté de manière sécurisée par GitHub
